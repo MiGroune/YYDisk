@@ -1,43 +1,19 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
+This file is used for data analyses
+Data Format Support:
+1. LF1
+2.
+3.
 
-This is a temporary script file.
 """
-
-from   ctypes import *
+from LF1Structure import *
+from ctypes import *
+from pyspark import SparkContext
 import numpy as np
 import struct
 import binascii
 import string
-from pyspark import SparkContext
-
-
-class x3c_timeval(Structure):
-    _fields_ = [
-        ("tv_sec",  c_int32),
-        ("tv_nsec", c_int32)
-    ]
-
-
-class packet_hdr_t(Structure):
-    _fields_ = [
-        ("ts",     x3c_timeval),
-        ("length", c_uint32)
-    ]
-
-
-class log_glbhdr_t(Structure):
-    _fields_ = [
-        ("magic_number",  c_uint32),
-        ("version_major", c_uint16),
-        ("version_minor", c_uint16),
-        ("if_type",       c_uint16),
-        ("if_enum",       c_uint16),
-        ("ts",            x3c_timeval),
-        ("thiszone",      c_int32),
-        ("opt",           c_uint32 * 2),
-    ]
 
 
 class T51DataHandle(object):
@@ -45,6 +21,8 @@ class T51DataHandle(object):
         self.m_globalHeader = log_glbhdr_t()
         self.m_file = open(filename, 'rb')
         self.getFileLength()
+
+        self.debug = True
 
 
     def getFileLength(self):
@@ -99,14 +77,12 @@ class T51DataHandle(object):
                 allDataList.append(self.readPerPackedData())
                 count += 1
                 currentPos = self.m_file.tell()
-                print "PackedData Num: " + str(count) + ", Current Position: " + str(currentPos) + ", Remain: " + str(
-                    self.m_fileLength-currentPos)
+                if self.debug == True:
+                    print "PackedData Num: " + str(count) + ", Current Position: " + str(currentPos) + ", Remain: " + str(
+                        self.m_fileLength-currentPos)
             except Exception, e:
                 print e
                 break
-
-        pass
-
 
     def readPerPackedData(self):
         packHeader = self.readPackHeader()
@@ -139,37 +115,5 @@ class T51DataHandle(object):
 
 
 if __name__ == '__main__':
-"""
-    logFile = 'C:\HANDY_v2p3\README.md'
-    sc = SparkContext("local","Simple App")
-    #ldata = sc.binaryRecords(logFile)
-    logData = sc.textFile(logFile).cache()
-
-
-    numAs = logData.filter(lambda s: 'a' in s).count()
-    numBs = logData.filter(lambda s: 'b' in s).count()
-
-    print("Lines with a: %i, lines with b: %i"%(numAs, numBs))
-"""
     T51data = T51DataHandle("T51_E0_R0_2017_01_19_004250.lf1")
     T51data.parseData()
-
-
-    currentByte = f.read(4)
-    hexValue = binascii.hexlify(currentByte)
-    data = string.atoi(hexValue)
-
-"""
-    hexs = str(hexValue)
-    pack_data = struct.pack('<L', hexValue)
-    if len(currentByte) == 0:
-        break;
-    else:
-        print "%2s" % currentByte.encode('hex'),
-        index = index + 1
-        if index == 16:
-            index = 0
-            print
-
-f.close()
-"""
