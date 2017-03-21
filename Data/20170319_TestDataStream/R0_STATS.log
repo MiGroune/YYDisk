@@ -1,0 +1,64 @@
+XCube Logger
+(C)Copyright 2016 - All rights reserved  Version: 1.7.3.0
+
+
+		 **STATISTICS FOR RUN 0
+
+	Start time   : Sun Mar 19 01:44:42 2017
+	End   time   : Sun Mar 19 01:45:25 2017
+	Elapsed time : 0 days, 0 hours, 0 minutes, 43 seconds
+
+		T51_E0 - ETHERNET MANAGER
+               6 	:pfring packet count
+               0 	:pfring dropped packets
+             432 	:byte count
+               0 	:dropped bytes
+               6 	:packet count
+               0 	:dropped packets
+               0 	:error count
+              10 	:input rate -bytes per second
+              10 	:capture rate -bytes per second
+
+		T52_E0 - CANKbus MANAGER
+         3339600 	:byte count
+               0 	:dropped bytes
+           75900 	:packet count
+               0 	:dropped packets
+               0 	:error count
+           77665 	:input rate -bytes per second
+           77665 	:capture rate -bytes per second
+
+		T52_E1 - CANKbus MANAGER
+         6331512 	:byte count
+               0 	:dropped bytes
+          143898 	:packet count
+               0 	:dropped packets
+               0 	:error count
+          147244 	:input rate -bytes per second
+          147244 	:capture rate -bytes per second
+
+		T53_E0 - USB MANAGER
+          334933 	:byte count
+               0 	:dropped bytes
+            4266 	:packet count
+               0 	:dropped packets
+               0 	:error count
+            7789 	:input rate -bytes per second
+            7789 	:capture rate -bytes per second
+
+		T56_E0 - DGEN MANAGER
+        82275024 	:byte count
+               0 	:dropped bytes
+           20028 	:packet count
+               0 	:dropped packets
+               0 	:error count
+         1913372 	:input rate -bytes per second
+         1913372 	:capture rate -bytes per second
+
+		 ***** RUN 0 SESSION TOTALS ***** 
+
+        92281501 	:total byte count
+               0 	:total lost byte count
+         2146081 	:total input rate -bytes per second
+         2146081 	:total capture rate -bytes per second
+
